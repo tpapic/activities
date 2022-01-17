@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application;
+using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,10 +37,8 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
 
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
+            services.AddApplication();
+            services.AddInfrastructure(_config);
 
             services.AddCors(opt =>
             {
