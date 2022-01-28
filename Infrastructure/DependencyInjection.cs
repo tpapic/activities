@@ -5,6 +5,8 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Infrastructure.Security;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Infrastructure
 {
@@ -25,6 +27,18 @@ namespace Infrastructure
             })
             .AddEntityFrameworkStores<DataContext>()
             .AddSignInManager<SignInManager<AppUser>>();
+
+            services.AddScoped<IUserAccessor, UserAccessor>();
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsActivityHost", policy =>
+                {
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
+
+            services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
 
             return services;
         }

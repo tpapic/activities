@@ -9,6 +9,8 @@ namespace Application.Common.Interfaces
     public interface IDbContext
     {
         DbSet<Activity> Activities { get; }
+        DbSet<ActivityAttendee> ActivityAttendees { get; }
+        DbSet<AppUser> Users { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
