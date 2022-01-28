@@ -7,6 +7,7 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Infrastructure.Security;
 using Microsoft.AspNetCore.Authorization;
+using Infrastructure.Photos;
 
 namespace Infrastructure
 {
@@ -39,6 +40,9 @@ namespace Infrastructure
             });
 
             services.AddTransient<IAuthorizationHandler, IsHostRequirementHandler>();
+
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
 
             return services;
         }

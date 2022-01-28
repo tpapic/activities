@@ -11,6 +11,7 @@ namespace Application.Common.Interfaces
         DbSet<Activity> Activities { get; }
         DbSet<ActivityAttendee> ActivityAttendees { get; }
         DbSet<AppUser> Users { get; }
+        DbSet<Photo> Photos { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
