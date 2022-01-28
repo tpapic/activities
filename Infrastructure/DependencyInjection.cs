@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure
 {
@@ -16,6 +18,13 @@ namespace Infrastructure
             });
 
             services.AddScoped<IDbContext>(provider => provider.GetRequiredService<DataContext>());
+
+            services.AddIdentityCore<AppUser>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<DataContext>()
+            .AddSignInManager<SignInManager<AppUser>>();
 
             return services;
         }

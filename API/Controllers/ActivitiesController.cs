@@ -5,6 +5,7 @@ using Application.Activities;
 using Domain.Entities;
 using Infrastructure.Persistence;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
