@@ -8,11 +8,12 @@ namespace Application.Common.Interfaces
 {
     public interface IDbContext
     {
-        DbSet<Activity> Activities { get; }
-        DbSet<ActivityAttendee> ActivityAttendees { get; }
-        DbSet<AppUser> Users { get; }
-        DbSet<Photo> Photos { get; }
-        DbSet<Comment> Comments { get; }
+        DbSet<Activity> Activities { get; set; }
+        DbSet<ActivityAttendee> ActivityAttendees { get; set; }
+        DbSet<AppUser> Users { get; set; }
+        DbSet<Photo> Photos { get; set; }
+        DbSet<Comment> Comments { get; set; }
+        DbSet<UserFollowing> UserFollowings { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
